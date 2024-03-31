@@ -18,11 +18,23 @@ const taskRouter = express.Router();
 taskRouter
   .route("/")
   .get(checkAuth(), GetAllTasks)
-  .post(checkAuth(), validateData(taskCreateSchema), CreateTask);
+  .post(
+    checkAuth(["receptionist"]),
+    validateData(taskCreateSchema),
+    CreateTask,
+  );
 taskRouter
   .route("/:id")
-  .get(checkAuth(), validateData(taskParamSchema), GetTask)
-  .patch(checkAuth(), validateData(taskUpdateSchema), UpdateTask)
-  .delete(checkAuth(), validateData(taskParamSchema), DeleteTask);
+  .get(checkAuth(["receptionist"]), validateData(taskParamSchema), GetTask)
+  .patch(
+    checkAuth(["receptionist"]),
+    validateData(taskUpdateSchema),
+    UpdateTask,
+  )
+  .delete(
+    checkAuth(["receptionist"]),
+    validateData(taskParamSchema),
+    DeleteTask,
+  );
 
 export default taskRouter;

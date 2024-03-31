@@ -11,7 +11,8 @@ export const CreateUser = async (
     const user = await RegisterUserService(req.body);
     res.status(200).json({
       status: "Success",
-      message: "User Logged In",
+      message: "User Created",
+      user,
     });
   } catch (error) {
     res.status(400).json({
@@ -42,6 +43,7 @@ export const LogInUser = async (
     res.status(200).json({
       status: "Success",
       message: "User Logged In",
+      user,
       //   token: _setAuthCookie(res, user),
     });
   } catch (error) {

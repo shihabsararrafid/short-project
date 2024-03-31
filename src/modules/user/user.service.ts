@@ -30,6 +30,7 @@ export const RegisterUserService = async (
   const encryptedPassword = bcrypt.hashSync(data.password, 12);
   const user = await prisma.user.create({
     data: { ...data, password: encryptedPassword },
+    select: { email: true, role: true, id: true },
   });
   return user;
 };

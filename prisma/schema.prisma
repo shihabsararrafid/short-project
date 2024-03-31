@@ -7,6 +7,12 @@
 generator client {
   provider = "prisma-client-js"
 }
+enum roles {
+  admin
+  superadmin
+  user
+  receptionist
+}
 
 datasource db {
   provider = "postgresql"
@@ -17,6 +23,7 @@ model user {
   email String @unique
   password String
   task task[]
+  role roles @default(user)
   @@index([id,email])
 }
 model task {
