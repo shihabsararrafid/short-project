@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import prisma from "../../../db/prisma";
 
 export const LogInUserService = async (
-  data: z.infer<typeof userCreateSchema>,
+  data: z.infer<typeof userCreateSchema>["body"],
 ) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -25,7 +25,7 @@ export const LogInUserService = async (
   } else throw new Error("User Not Found");
 };
 export const RegisterUserService = async (
-  data: z.infer<typeof userCreateSchema>,
+  data: z.infer<typeof userCreateSchema>["body"],
 ) => {
   const encryptedPassword = bcrypt.hashSync(data.password, 12);
   const user = await prisma.user.create({

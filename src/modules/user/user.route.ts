@@ -1,5 +1,5 @@
 import express from "express";
-import { validateData } from "../../utils/validatorSchema";
+import { validateData } from "../../middleware/validatorSchema";
 import { userCreateSchema } from "../../schemas/user";
 import { CreateUser, LogInUser } from "./user.controller";
 const userRouter = express.Router();

@@ -23,9 +23,9 @@ model task {
   id   Int   @id@default(autoincrement())
   title String
   description String
-  userId  String
+  userId  String 
   user    user  @relation(fields: [userId],references: [id],onDelete: Cascade)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now())
-  @@index([id])
+  @@index([id,userId])
 }
